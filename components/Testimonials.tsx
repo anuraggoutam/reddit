@@ -37,7 +37,7 @@ const Testimonial = ({
         ))}
       </div>
       <p className="text-lg mb-6 font-light italic text-center text-balance">
-        "{quote}"
+        &ldquo;{quote}&rdquo;
       </p>
       <div className="text-center">
         <p className="font-medium text-astro-navy">{name}</p>
@@ -86,6 +86,7 @@ const Testimonials = () => {
   };
 
   useEffect(() => {
+    const sectionNode = sectionRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -98,13 +99,13 @@ const Testimonials = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (sectionNode) {
+      observer.observe(sectionNode);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (sectionNode) {
+        observer.unobserve(sectionNode);
       }
     };
   }, []);
@@ -116,7 +117,7 @@ const Testimonials = () => {
     }, 8000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [nextTestimonial]);
 
   return (
     <section id="testimonials" className="py-24 bg-astro-cream/20">

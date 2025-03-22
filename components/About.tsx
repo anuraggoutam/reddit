@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -7,15 +8,19 @@ const About = () => {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const sectionNode = sectionRef.current;
+    const imageNode = imageRef.current;
+    const contentNode = contentRef.current;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('animate-fade-in');
-            if (entry.target === imageRef.current) {
+            if (entry.target === imageNode) {
               entry.target.classList.add('animate-fade-in-up');
             }
-            if (entry.target === contentRef.current) {
+            if (entry.target === contentNode) {
               entry.target.classList.add(
                 'animate-fade-in-up',
                 'animation-delay-300'
@@ -28,22 +33,22 @@ const About = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (sectionNode) {
+      observer.observe(sectionNode);
     }
 
-    if (imageRef.current) {
-      observer.observe(imageRef.current);
+    if (imageNode) {
+      observer.observe(imageNode);
     }
 
-    if (contentRef.current) {
-      observer.observe(contentRef.current);
+    if (contentNode) {
+      observer.observe(contentNode);
     }
 
     return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-      if (imageRef.current) observer.unobserve(imageRef.current);
-      if (contentRef.current) observer.unobserve(contentRef.current);
+      if (sectionNode) observer.unobserve(sectionNode);
+      if (imageNode) observer.unobserve(imageNode);
+      if (contentNode) observer.unobserve(contentNode);
     };
   }, []);
 
@@ -71,9 +76,11 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div ref={imageRef} className="relative opacity-0">
             <div className="relative z-10 rounded-lg overflow-hidden shadow-2xl">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb"
                 alt="Starry night sky"
+                width={500}
+                height={300}
                 className="w-full h-auto object-cover"
               />
             </div>

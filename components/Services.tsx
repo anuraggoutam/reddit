@@ -13,6 +13,8 @@ const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const cardNode = cardRef.current;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -25,13 +27,13 @@ const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
       { threshold: 0.1 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    if (cardNode) {
+      observer.observe(cardNode);
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
+      if (cardNode) {
+        observer.unobserve(cardNode);
       }
     };
   }, []);
@@ -62,6 +64,8 @@ const Services = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const sectionNode = sectionRef.current;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -74,13 +78,13 @@ const Services = () => {
       { threshold: 0.1 }
     );
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (sectionNode) {
+      observer.observe(sectionNode);
     }
 
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (sectionNode) {
+        observer.unobserve(sectionNode);
       }
     };
   }, []);
