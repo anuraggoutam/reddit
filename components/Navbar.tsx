@@ -32,15 +32,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav
-      // className={`fixed w-full z-50 transition-all duration-300 ${
-      //   isScrolled
-      //     ? 'py-4 bg-white/80 backdrop-blur-md shadow-sm'
-      //     : 'py-6 bg-transparent'
-      // }`}
-      className=" w-full z-50 transition-all duration-300
-          py-4 bg-white/80 backdrop-blur-md shadow-sm "
-    >
+    <nav className="relative w-full z-50 transition-all duration-300 py-4 bg-white/80 backdrop-blur-md shadow-xs ">
       <div className="container-custom flex justify-between items-center">
         <a href="#" className="flex items-center gap-2">
           <div className="relative w-10 h-10 rounded-full bg-astro-gold/20 flex items-center justify-center overflow-hidden">
